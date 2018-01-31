@@ -176,6 +176,8 @@ class Client extends EventEmitter
         @logger.info 'Connecting...'
         options =
             rejectUnauthorized: tlsverify
+            headers:
+                origin: (if useTLS then "https://" else "http://") + @host + (if @options.httpPort then ':' + @options.httpPort else '')
 
         options.agent = new HttpsProxyAgent(@httpProxy) if @httpProxy
 
