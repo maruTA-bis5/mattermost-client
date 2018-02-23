@@ -236,7 +236,8 @@ class Client extends EventEmitter
 
     reconnect: ->
         if @_reconnecting
-            @logger.info 'WARNING: Already reconnecting.'
+            @logger.info 'WARNING: Already reconnecting, skipping call.'
+            return
         @_connecting = false
         @_reconnecting = true
         if @_pongTimeout
